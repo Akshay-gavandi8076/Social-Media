@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
+// import { AuthContext } from '../helper/AuthContext';
 
 function CreatePost() {
 	let history = useHistory();
 
+	// const { authState } = useContext(AuthContext);
+
 	const initialValues = {
 		title: '',
-		postText: '',
-		username: ''
+		postText: ''
 	};
+
+	useEffect(() => {
+		if (!localStorage.getItem('accessToken')) {
+			history.push('/login');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string().required('You must enter a Title'),
-		postText: Yup.string().required('You must enter something to post'),
-		username: Yup.string().min(3).required('You must enter a Username')
+		postText: Yup.string().required('You must enter something to post')
 	});
 
 	const onSubmit = data => {
-		axios.post('http://localhost:3001/posts', data).then(response => {
-			history.push('/');
-		});
+		axios
+			.post('http://localhost:3001/posts', data, {
+				headers: { accessToken: localStorage.getItem('accessToken') }
+			})
+			.then(response => {
+				history.push('/');
+			});
 	};
 
 	return (
@@ -51,14 +63,6 @@ function CreatePost() {
 						placeholder='Enter Post Content Here...'
 					/>
 
-					<label>Username:</label>
-					<ErrorMessage name='username' component='span' />
-					<Field
-						// autoComplete='off'
-						id='inputCreatePost'
-						name='username'
-						placeholder='Enter Username Here...'
-					/>
 					<button type='submit'>Create Post</button>
 				</Form>
 			</Formik>

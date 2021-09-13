@@ -1,25 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+:root {
+	--primary-color: #2b44f5;
+	--dark-color: #333333;
+	--light-color: #f4f4f4;
+	--danger-color: #dc3545;
+	--danger2-color: #f1717e;
+	--success-color: #28a745;
+}
+
 .App {
-	width: 100vw;
+	width: 100%;
 	height: auto;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 }
 
-body {
+* {
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 1rem;
+	line-height: 1.6;
+	background-color: #fff;
+	color: #333;
 }
 
 .post {
 	width: 400px;
 	height: 300px;
-	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	margin-top: 50px;
 	border: 1px solid lightgray;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Roboto', sans-serif;
 
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -28,10 +47,11 @@ body {
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	cursor: pointer;
 }
+
 .post .title {
 	flex: 20%;
 	border-bottom: 1px solid lightgray;
-	background-color: dodgerblue;
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
 	display: grid;
 	place-content: center;
 	color: white;
@@ -42,6 +62,10 @@ body {
 	display: grid;
 	place-content: center;
 }
+/* .post .body .bodyText {
+	display: flex;
+	justify-content: flex-start;
+} */
 
 .post .footer {
 	flex: 20%;
@@ -49,22 +73,67 @@ body {
 	display: flex;
 	align-items: center;
 	padding-left: 15px;
-	background-color: dodgerblue;
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
 	color: white;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+}
+
+.footer .username {
+	flex: 50%;
+}
+.footer .buttons {
+	flex: 50%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.footer .deletePost {
+	flex: 50%;
+	margin-right: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: transparent;
+}
+
+.footer .deletePost button {
+	color: white;
+	background-color: transparent;
+	border: none;
+}
+
+.footer .deletePost button:hover {
+	color: var(--danger-color);
+	cursor: pointer;
+}
+
+.footer span {
+	background: transparent;
+}
+
+.likeBttn {
+	color: var(--light-color);
+}
+.unlikeBttn {
+	color: var(--success-color);
+}
+
+.buttons label {
+	margin-right: 20px;
+	margin-left: 10px;
 }
 
 /* CREATE POST PAGE CSS */
 
 .createPostPage {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Roboto', sans-serif;
 	width: 100vw;
 	height: 70vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+
 .formContainer {
 	display: flex;
 	flex-direction: column;
@@ -72,7 +141,6 @@ body {
 	width: 500px;
 	height: auto;
 	padding: 20px;
-	border: 5px solid dodgerblue;
 	border-radius: 5px;
 }
 
@@ -88,16 +156,18 @@ body {
 
 .formContainer button {
 	margin-top: 15px;
-	height: 40px;
+	margin-left: 30%;
+	width: 200px;
+	height: 50px;
 	border: none;
-	background-color: lightskyblue;
+	background-color: #2b44f5;
 	border-radius: 5px;
 	color: white;
 }
 
 .formContainer button:hover {
 	cursor: pointer;
-	background-color: dodgerblue;
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
 }
 
 span {
@@ -109,16 +179,72 @@ span {
 .navbar {
 	width: 100%;
 	height: 70px;
-	background-color: dodgerblue;
+	/* background: rgb(51, 79, 221); */
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
 	display: flex;
 	align-items: center;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
-.navbar a {
+.navbar .links {
+	flex: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.navbar .loggedInContainer {
+	flex: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+a {
 	margin-left: 20px;
 	text-decoration: none;
 	color: white;
+}
+
+.navbar label {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	color: white;
+	margin-right: 5px;
+}
+
+.navbar button {
+	display: flex;
+	width: 100px;
+	height: 40px;
+	cursor: pointer;
+	margin-right: 20px;
+	padding: 10px;
+	background: transparent;
+	color: white;
+	border: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+}
+
+.navbar button span {
+	color: white;
+}
+
+.navbar button:hover {
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
+}
+
+.navbar h1 {
+	text-align: right;
+	margin-right: 20px;
+	color: white;
+	font-weight: lighter;
+}
+
+.AppName {
+	font-size: 4vh;
 }
 
 /* INDIVIDUAL POST */
@@ -152,22 +278,28 @@ span {
 	place-items: center;
 	margin-top: 25px;
 }
+.addCommentContainer input {
+	width: 600px;
+	height: 50px;
+	border: 2px solid grey;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-size: 20px;
+}
 
-.addCommentContainer input,
-button {
+.addCommentContainer button {
+	margin-top: 20px;
 	width: 200px;
 	height: 50px;
 	border-radius: 8px;
 	border: none;
-}
-
-.addCommentContainer button {
-	background-color: dodgerblue;
+	background-color: #2b44f5;
 	color: white;
 }
 
-.addCommentContainer input {
-	border: 2px solid dodgerblue;
+.addCommentContainer button:hover {
+	cursor: pointer;
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
 }
 
 .rightSide .listOfComments {
@@ -179,6 +311,7 @@ button {
 }
 
 .listOfComments .comment {
+	display: flex;
 	width: 70%;
 	height: auto;
 	padding: 30px;
@@ -187,9 +320,48 @@ button {
 	margin-top: 20px;
 }
 
+.listOfComments .comment .deleteComment {
+	flex: 50%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: transparent;
+}
+
+.listOfComments .comment label {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.listOfComments .comment span {
+	font-size: 20px;
+	margin-left: 10px;
+	color: black;
+}
+
+.listOfComments .deleteComment {
+	flex: 50%;
+	margin-right: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: transparent;
+}
+
+.listOfComments .deleteComment button {
+	color: var(--danger2-color);
+	background-color: transparent;
+	border: none;
+}
+
+.listOfComments .deleteComment button:hover {
+	color: var(--danger-color);
+	cursor: pointer;
+}
+
 #individual {
-	height: 500px;
-	width: 600px;
+	height: 400px;
+	width: 500px;
 }
 
 #individual .title,
@@ -212,8 +384,14 @@ button {
 	padding-top: 100px;
 }
 
-.loginContainer input,
-button {
+.loginContainer input {
+	width: 300px;
+	height: 50px;
+	margin: 10px;
+	padding: 10px;
+}
+
+.loginContainer button {
 	width: 200px;
 	height: 50px;
 	border-radius: 8px;
@@ -222,10 +400,20 @@ button {
 }
 
 .loginContainer button {
-	background-color: dodgerblue;
+	background-color: #2b44f5;
 	color: white;
 }
 
-.loginContainer input {
-	border: 2px solid dodgerblue;
+.loginContainer button:hover {
+	background: linear-gradient(120.58deg, #2b44f5 50%, #107cfc);
+}
+
+.logoutContainer .button {
+	flex: 50%;
+	margin-top: 15px;
+	height: 40px;
+	border: none;
+	background-color: #2b44f5;
+	border-radius: 5px;
+	color: white;
 }
